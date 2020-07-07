@@ -27,7 +27,9 @@ public:
 	void setRoot(ThreadNode<T>* r) { root = r; num++; }
 	void insertChild(ThreadNode<T>* parent, int type, ThreadNode<T>* child);
 	//标准的插入结点的方法
-	void threading(ThreadNode<T>* root);//线索化二叉树，必须是已经构建好的二叉树才能线索化,线索化后改变结构要去掉已连线索再重新线索化,很麻烦
+	void inorderThreading(ThreadNode<T>* root);//线索化二叉树，必须是已经构建好的二叉树才能线索化,线索化后改变结构要去掉已连线索再重新线索化,很麻烦
 									   //调用的时候要写tree.threading(tree.getRoot());
+	void inorderTraverse(ThreadNode<T>* p, void(*visit)(T c));//线索化后可从任意位置p沿线索或右子树最左下结点依次中序遍历;
+	void revinorderTraverse(ThreadNode<T>* p, void(*visit)(T c));//线索化后按中序反向遍历；
 };
 

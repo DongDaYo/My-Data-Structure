@@ -16,30 +16,29 @@ void ThreadTree<T>::insertChild(ThreadNode<T>* parent, int type, ThreadNode<T>* 
 }
 
 template<class T>
-void ThreadTree<T>::threading(ThreadNode<T>* root) {
+void ThreadTree<T>::threading(ThreadNode<T>* root){
 	static ThreadNode<T>* pre = NULL;
 	static int threads = 0;
 	if (root) {
 		threading(root->lchild);
-		if (root->lchild == NULL) {
+		if (root->lchild == NULL) { 
 			root->lchild = pre; root->ltag = 1; threads++;
-			cout << root << "的左指针已连至中序前驱" << pre  << endl;
+			//cout << root << "的左指针已连至中序前驱" << pre  << endl;
 		}
 		if (pre && pre->rchild == NULL) {
 			pre->rchild = root; pre->rtag = 1; threads++;
-			cout << pre<< "的右指针已连至中序后继" << root<< endl;
+			//cout << pre<< "的右指针已连至中序后继" << root<< endl;
 		}
 		pre = root;
 		threading(root->rchild);
 	}
 	else if (threads == num) {
 		pre->rchild = NULL; pre->rtag = 1; threads++;
-		cout << "最后一个中序遍历结点" << pre << "的右指针已连至" <<NULL<< endl;
+		//cout << "最后一个中序遍历结点" << pre << "的右指针已连至" <<NULL<< endl;
 	}
 }
 
 /*
-
 int main() {
 	ThreadTree<char> tree;
 	ThreadNode<char>* A = new ThreadNode<char>;
