@@ -31,13 +31,15 @@ void ThreadTree<T>::inorderThreading(ThreadNode<T>* root) {
 			else {
 				cout << "NULL";
 			}
+			cout << endl;
 			//cout << root << "的左指针已连至中序前驱" << pre  << endl;
 		}
 		if (pre && pre->rchild == NULL) {
 			pre->rchild = root; pre->rtag = 1; threads++;
 			cout << pre->data;
 			cout << "的右指针已连至中序后继";
-			cout << root->data << endl;
+			cout << root->data;
+			cout << endl;
 			//cout << pre<< "的右指针已连至中序后继" << root<< endl;
 		}
 		pre = root;
@@ -80,6 +82,7 @@ void ThreadTree<T>::revinorderTraverse(ThreadNode<T>* p, void(*visit)(T c)){
 		
 }
 
+/*
 
 void print(char c){
      cout << c <<endl;
@@ -120,4 +123,4 @@ int main() {
 	tree.revinorderTraverse(I, print);
 	return 0;
 }
-
+*/

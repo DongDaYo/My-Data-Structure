@@ -138,6 +138,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AVLTree.cpp" />
     <ClCompile Include="BiTree.cpp" />
     <ClCompile Include="Exercise - Bracket Matching.cpp" />
     <ClCompile Include="Exercise - Reverse Polish Notation.cpp" />
@@ -148,6 +149,7 @@
     <ClCompile Include="ThreadTree.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AVLTree.h" />
     <ClInclude Include="BiTree.h" />
     <ClInclude Include="LinkQueue.h" />
     <ClInclude Include="LinkStack.h" />
