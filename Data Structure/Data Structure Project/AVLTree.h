@@ -47,23 +47,11 @@ private:
 				if (pre == NULL) { 
 					begin = p; 
 				}
-				cout << p->data;
-				cout << "的左指针已连至中序前驱";
-				if (pre) {
-					cout << pre->data;
-				}
-				else {
-					cout << "NULL";
-				}
-				cout << endl;
+				
 			}
 			if (pre && pre->rchild == NULL) {
 				pre->rchild = p; pre->rtag = 1; threads++;
-				cout << pre->data;
-				cout << "的右指针已连至中序后继";
-				cout << p->data;
-				cout << endl;
-				//cout << pre<< "的右指针已连至中序后继" << root<< endl;
+				
 			}
 			pre = p;
 			threading(p->rchild);
@@ -71,9 +59,6 @@ private:
 		else if (threads == num) {
 			pre->rchild = NULL; pre->rtag = 1; threads++;
 			end = pre;
-			cout << "最后一个中序遍历结点";
-			cout << pre->data;
-			cout << "的右指针已连至NULL" << endl;
 		}
 	}
 public:

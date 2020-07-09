@@ -46,8 +46,7 @@ void AVLTree<T>::checkandbalance()
 		A = pathvec.path[k];
 		B = pathvec.path[k + 1];
 		if (A->rchild == B) {
-			if (pathvec.path[n - 1]->data > B->data)   {
-				cout << "RR型失衡" << endl;
+			if (pathvec.path[n - 1]->data > B->data)   {//RR型失衡
 				A->rchild = B->lchild;
 				B->lchild = A;
 				if (k >= 1) {//如果A有父结点
@@ -85,12 +84,11 @@ void AVLTree<T>::checkandbalance()
 						}
 					}
 				}
-			}else {
-				cout << "RL型失衡" << endl;
+			}else {//RL型失衡
 				C = pathvec.path[k + 2];
-				A->rchild = C->lchild;
 				B->lchild = C->rchild;
 				C->rchild = B;
+				A->rchild = C->lchild;
 				C->lchild = A;
 				if (k >= 1) {//如果A有父结点
 					if (A == pathvec.path[k - 1]->lchild) {
@@ -145,8 +143,7 @@ void AVLTree<T>::checkandbalance()
 			}
 		}
 		else {
-			if (pathvec.path[n - 1]->data < B->data) {
-				cout << "LL型失衡" << endl;
+			if (pathvec.path[n - 1]->data < B->data) {//LL型失衡"
 				A->lchild = B->rchild;
 				B->rchild = A;
 				if (k >= 1) {//如果A有父结点
@@ -185,12 +182,11 @@ void AVLTree<T>::checkandbalance()
 					}
 				}
 			}
-			else {
-				cout << "LR型失衡" << endl;
+			else {//LR型失衡
 				C = pathvec.path[k + 2];
-				A->lchild = C->rchild;
 				B->rchild = C->lchild;
 				C->lchild = B;
+				A->lchild = C->rchild;
 				C->rchild = A;
 				if (k >= 1) {//如果A有父结点
 					if (A == pathvec.path[k - 1]->lchild) {
@@ -245,7 +241,6 @@ void AVLTree<T>::checkandbalance()
 			}
 		}
 	}
-	
 	clearpath();
 }
 
