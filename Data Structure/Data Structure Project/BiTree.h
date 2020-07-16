@@ -38,6 +38,5 @@ public:
 	void inorder(void (*visit)(T a), BiTNode<T>* c);
 	void postorder(void (*visit)(T a), BiTNode<T>* c);
 
-
 };
 

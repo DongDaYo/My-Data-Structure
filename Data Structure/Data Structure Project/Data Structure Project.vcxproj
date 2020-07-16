@@ -85,7 +85,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
@@ -138,21 +138,26 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ALGraph.cpp" />
     <ClCompile Include="AVLTree.cpp" />
     <ClCompile Include="BiTree.cpp" />
     <ClCompile Include="Exercise - Bracket Matching.cpp" />
+    <ClCompile Include="Exercise - Inorder Traverse BiTree with Stack.cpp" />
     <ClCompile Include="Exercise - Reverse Polish Notation.cpp" />
     <ClCompile Include="Exercise - Traverse BiTree by Layer with Queue.cpp" />
     <ClCompile Include="Exercise - Value of Expression.cpp" />
     <ClCompile Include="LinkQueue.cpp" />
     <ClCompile Include="LinkStack.cpp" />
+    <ClCompile Include="MGraph.cpp" />
     <ClCompile Include="ThreadTree.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ALGraph.h" />
     <ClInclude Include="AVLTree.h" />
     <ClInclude Include="BiTree.h" />
     <ClInclude Include="LinkQueue.h" />
     <ClInclude Include="LinkStack.h" />
+    <ClInclude Include="MGraph.h" />
     <ClInclude Include="ThreadTree.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

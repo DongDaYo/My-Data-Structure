@@ -42,6 +42,15 @@
     <ClCompile Include="AVLTree.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Exercise - Inorder Traverse BiTree with Stack.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="MGraph.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ALGraph.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LinkStack.h">
@@ -57,6 +66,12 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="AVLTree.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="MGraph.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ALGraph.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
