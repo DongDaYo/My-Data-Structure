@@ -149,6 +149,7 @@
     <ClCompile Include="LinkQueue.cpp" />
     <ClCompile Include="LinkStack.cpp" />
     <ClCompile Include="MGraph.cpp" />
+    <ClCompile Include="OLGraph.cpp" />
     <ClCompile Include="ThreadTree.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -158,6 +159,7 @@
     <ClInclude Include="LinkQueue.h" />
     <ClInclude Include="LinkStack.h" />
     <ClInclude Include="MGraph.h" />
+    <ClInclude Include="OLGraph.h" />
     <ClInclude Include="ThreadTree.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

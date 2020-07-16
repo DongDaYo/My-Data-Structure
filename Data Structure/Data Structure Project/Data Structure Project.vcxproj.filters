@@ -51,6 +51,9 @@
     <ClCompile Include="ALGraph.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="OLGraph.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LinkStack.h">
@@ -72,6 +75,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="ALGraph.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="OLGraph.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

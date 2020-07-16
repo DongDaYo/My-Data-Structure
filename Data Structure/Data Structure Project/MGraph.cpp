@@ -13,7 +13,7 @@ void MGraph<T>::initialize()
 	cin >> c;
 	if (c == 'y') {
 		for (int i = 0; i < vexnum; i++) {
-			cin >> vex[i];
+			cin >> vertices[i];
 		}
 	}
 	T headdata, taildata;
@@ -115,7 +115,7 @@ edges MGraph<T>::neighbors(int x)
 template <typename T>
 int MGraph<T>::insertVertex(T x)
 {
-	vex[vexnum] = x;
+	vertices[vexnum] = x;
 	return vexnum++;	 
 }
 

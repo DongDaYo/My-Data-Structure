@@ -1,87 +1,20 @@
 #include "ALGraph.h"
-#include <map>
-using namespace std;
 
 template<typename T>
-void ALGraph<T>::initialize() {
-	ArcNode* p, * q;
-	cout << "请输入顶点数和边数" << endl;
-	cin >> vexnum >> arcnum;
-	char c;
-	cout << "是否要输入结点的数据？若选否，输入边的数据时须从0开始为顶点编号。y:是/n:否" << endl;
-	cin >> c;
-	if (c == 'y') {
-		for (int i = 0; i < vexnum; i++) {
-			cin >> vertices[i];
-		}
+void ALGraph<T>::initialize(map<T,int>& mp) {
+	T c, x, y;
+	int vn, an;
+	cout << "请输入顶点数和弧数" << endl;
+	cin >> vn >> an;
+	cout << "请输入每个顶点的字符数据" << endl;
+	for (int i = 0; i < vn; i++) {
+		cin >> c;
+		mp[c] = insertVertex(c);
 	}
-	T headdata, taildata;
-	int head, tail, info = 1;
-	if (kind == DG|| kind == DN) {
-		cout << "请输入弧的弧尾和弧头(有向网还需输入权值)" << endl;
-		for (int i = 0; i < arcnum; i++) {
-			cin >> taildata >> headdata;
-			if (kind == DN) cin >> info;
-			if (c == 'y') {
-				tail = foundIndex(taildata);
-				if (tail < 0) {
-					cout << "出错，不存在数据是" << taildata << "的顶点，请重新输入此边数据" << endl;
-					i--;
-					continue;
-				}
-				head = foundIndex(headdata);
-				if (head < 0) {
-					cout << "出错，不存在数据是" << headdata << "的顶点，请重新输入此边数据" << endl;
-					i--;
-					continue;
-				}
-			}
-			else if (c == 'n') {
-				tail = taildata;
-				head = headdata;
-			}
-			p = new ArcNode;
-			p->adjvex = head;
-			p->nextarc = vertices[tail].firstarc->nextarc;
-			vertices[tail].firstarc = p;
-			p->info = info;
-		}
-	}
-	else if (kind == UDG || kind == UDN) {
-		cout << "请输入弧的弧尾和弧头(有向网还需输入权值)" << endl;
-		for (int i = 0; i < arcnum; i++) {
-			cin >> taildata >> headdata;
-			if (kind == DN) cin >> info;
-			if (c == 'y') {
-				tail = foundIndex(taildata);
-				if (tail < 0) {
-					cout << "出错，不存在数据是" << taildata << "的顶点，请重新输入此边数据" << endl;
-					i--;
-					continue;
-				}
-				head = foundIndex(headdata);
-				if (head < 0) {
-					cout << "出错，不存在数据是" << headdata << "的顶点，请重新输入此边数据" << endl;
-					i--;
-					continue;
-				}
-			}
-			else if (c == 'n') {
-				tail = taildata;
-				head = headdata;
-			}
-			p = new ArcNode;
-			p->adjvex = head;
-			p->nextarc = vertices[tail].firstarc->nextarc;
-			vertices[tail].firstarc = p;
-			p->info = info;
-
-			q = new ArcNode;
-			q->adjvex = tail;
-			q->nextarc = vertices[head].firstarc->nextarc;
-			vertices[head].firstarc = q;
-			q->info = info;
-		}
+	cout << "请输入弧的弧尾字符和弧头字符" << endl;
+	for (int i = 0; i < an; i++) {
+		cin >> x >> y;
+		addEdge(mp[x], mp[y]);
 	}
 }
 
@@ -246,19 +179,10 @@ int main() {
 	ALGraph<char> graph(DG);
 	map<char, int> mp;
 	char c,x,y;
-	int vexnum, arcnum,s,t;
-	cout << "请输入顶点数和弧数" << endl;
-	cin >> vexnum >> arcnum;
-	cout << "请输入每个顶点的字符数据" << endl;
-	for (int i = 0; i < vexnum; i++) {
-		cin >> c;
-		mp[c] = graph.insertVertex(c);
-	}
-	cout << "请输入弧的弧尾字符和弧头字符" << endl;
-	for (int i = 0; i < arcnum; i++) {
-		cin >> x >> y;
-		graph.addEdge(mp[x], mp[y]);
-	}
+	int s,t;
+	
+	graph.initialize(mp);
+
 	for (int j = 0; j < 3; j++) {
 		cout << "请输入需要判断两个顶点间是否有弧的弧尾字符和弧头字符" << endl;
 		cin >> x >> y;
@@ -269,6 +193,7 @@ int main() {
 			cout << x << "到" << y << "没有弧" << endl;
 		}
 	}
+	if (graph.adjacent(mp[x],mp[y])) graph.removeEdge(mp[x],mp[y]);
 	for (int k = 0; k < 2; k++) {
 		cout << "请输入想要查找首个关联的点的顶点的字符" << endl;
 		cin >> x;

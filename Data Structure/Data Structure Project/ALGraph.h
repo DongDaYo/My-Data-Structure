@@ -1,6 +1,8 @@
 #pragma once
 #include <iostream>
+#include <map>
 #define MaxVertexNum 15
+using namespace std;
 typedef enum { DG, DN, UDG, UDN } GraphKind;
 struct ArcNode {
 	int adjvex;
@@ -52,7 +54,7 @@ public:
 		return vertices[x].data;
 	}
 
-	void initialize();
+	void initialize(map<T,int>& mp);
 
 	bool adjacent(int x, int y);
 	int insertVertex(T x);

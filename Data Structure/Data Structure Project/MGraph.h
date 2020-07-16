@@ -14,14 +14,14 @@ template <typename T>
 class MGraph
 {
 private:
-	T vex[MaxVertexNum]; //结点数据表
+	T vertices[MaxVertexNum]; //结点数据表
 	int edge[MaxVertexNum][MaxVertexNum];
 	int vexnum, arcnum;
 	GraphKind kind;
 
 	int foundIndex(T x) {
 		for (int i = 0; i < vexnum; i++) {
-			if (vex[i] == x) return i;
+			if (vertices[i] == x) return i;
 		}
 		return -1;
 	}
@@ -39,7 +39,7 @@ public:
 	}
 
 	T getVexElem(int x) {
-		return vex[x];
+		return vertices[x];
 	}
 
 	void initialize(); 
