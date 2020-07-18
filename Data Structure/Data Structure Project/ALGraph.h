@@ -66,5 +66,6 @@ public:
 	int nextInneighbor(int x, int y);
 	int getEdgeValue(int x, int y);
 	bool setEdgeValue(int x, int y, int info);
+
 };
 

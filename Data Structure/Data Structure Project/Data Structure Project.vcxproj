@@ -139,6 +139,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ALGraph.cpp" />
+    <ClCompile Include="AMLGraph.cpp" />
     <ClCompile Include="AVLTree.cpp" />
     <ClCompile Include="BiTree.cpp" />
     <ClCompile Include="Exercise - Bracket Matching.cpp" />
@@ -154,6 +155,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ALGraph.h" />
+    <ClInclude Include="AMLGraph.h" />
     <ClInclude Include="AVLTree.h" />
     <ClInclude Include="BiTree.h" />
     <ClInclude Include="LinkQueue.h" />

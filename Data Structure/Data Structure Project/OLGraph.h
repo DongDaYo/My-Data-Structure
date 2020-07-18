@@ -19,21 +19,26 @@ class OLGraph
 private:
 	VNode<T> vertices[MaxVertexNum];
 	int vexnum, arcnum;
+
+	void BFS(int i, bool* visited, void(*visit)(T c));
 public:
 	OLGraph<T>() {
 		vexnum = arcnum = 0;
 	}
 
 	~OLGraph<T>() {
+		int counter = 0;
 		ArcNode* p, * q;
 		for (int i = 0; i < vexnum; i++) {
 			p = vertices[i].firstout;
 			while (p) {
 				q = p->tlink;
 				delete p;
+				counter++;
 				p = q;
 			}
 		}
+		//cout << "共释放边结构体" << counter << "个"<< endl;
 	}
 
 	int getVexnum() {
@@ -56,5 +61,7 @@ public:
 	int nextInneighbor(int x, int y);
 	int getEdgeValue(int x, int y);
 	bool setEdgeValue(int x, int y, int info);
+
+	void BFSTraverse(void(*visit)(T c), int start = 0);
 };
 

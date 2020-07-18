@@ -1,77 +1,59 @@
 #include "MGraph.h"
-#include <map>
+#include "LinkQueue.cpp"
 #include <iostream>
 using namespace std;
 
+static LinkQueue<int> queue;
+
 template<typename T>
-void MGraph<T>::initialize()
+void MGraph<T>::BFS(int i, bool* visited, void(*visit)(T c))
 {
-	cout << "请输入顶点数和边数" << endl;
-	cin >> vexnum >> arcnum;
-	char c;
-	cout << "是否要输入结点的数据？若选否，输入边的数据时须从0开始为顶点编号。y:是/n:否" << endl;
-	cin >> c;
-	if (c == 'y') {
-		for (int i = 0; i < vexnum; i++) {
-			cin >> vertices[i];
+	int v = i;
+	queue.enqueue(i);
+	while (!queue.isEmpty()) {
+		queue.dequeue(v);
+		if (!visited[v]) {
+			visit(getVexElem(v));
+			visited[v] = true;
 		}
-	}
-	T headdata, taildata;
-	int head, tail, info = 1;
-	if (kind == DG || kind == DN) {
-		cout << "请输入弧的弧尾和弧头(有向网还需输入权值）" << endl;
-		for (int i = 0; i < arcnum; i++) {
-			cin >> taildata >> headdata;
-			if (kind == DN) cin >> info;
-			if (c == 'y') {
-				tail = foundIndex(taildata);
-				if (tail < 0) {
-					cout << "出错，不存在数据是" << taildata << "的顶点，请重新输入此边数据" << endl;
-					i--;
-					continue;
-				}
-				head = foundIndex(headdata);
-				if (head < 0) {
-					cout << "出错，不存在数据是" << headdata << "的顶点，请重新输入此边数据" << endl;
-					i--;
-					continue;
-				}
+		for (int w = firstneighbor(v); w >= 0; w = nextneighbor(v, w)) {
+			if (!visited[w]) {
+				queue.enqueue(w);
 			}
-			else if (c == 'n') {
-				tail = taildata;
-				head = headdata;
-			}
-			edge[tail][head] = info;
 		}
 	}
 	
-	if (kind == UDG|| kind == UDN) {
-		cout << "请输入边的两端(无向网还需输入权值）" << endl;
-		for (int i = 0; i < arcnum; i++) {
-			cin >> taildata >> headdata;
-			if (kind == UDN) cin >> info;
-			if (c == 'y') {
-				tail = foundIndex(taildata);
-				if (tail < 0) {
-					cout << "出错，不存在数据是" << taildata << "的顶点，请重新输入此边数据" << endl;
-					i--;
-					continue;
-				}
-				head = foundIndex(headdata);
-				if (head < 0) {
-					cout << "出错，不存在数据是" << headdata << "的顶点，请重新输入此边数据" << endl;
-					i--;
-					continue;
-				}
-			}
-			else if (c == 'n') {
-				tail = taildata;
-				head = headdata;
-			}
-			edge[tail][head] = info;
-			edge[head][tail] = info;
+}
+
+template<typename T>
+void MGraph<T>::DFS(int i, bool* visited, void(*visit)(T c))
+{
+	visit(getVexElem(i));
+	visited[i] = true;
+	for (int w = firstneighbor(i); w >= 0; w = nextneighbor(i, w)) {
+		if (!visited[w]) {
+			DFS(w, visited, visit);
 		}
 	}
+}
+
+template<typename T>
+void MGraph<T>::initialize(map<T, int>& mp){
+	T c, x, y;
+	int vn, an;
+	cout << "请输入顶点数和边(弧)数" << endl;
+	cin >> vn >> an;
+	cout << "请输入每个顶点的字符数据" << endl;
+	for (int i = 0; i < vn; i++) {
+		cin >> c;
+		mp[c] = insertVertex(c);
+	}
+	cout << "请输入每边两端的字符（或弧的弧头字符和弧尾字符）" << endl;
+	for (int i = 0; i < an; i++) {
+		cin >> x >> y;
+		addEdge(mp[x], mp[y]);
+	}
+
 }
 
 template <typename T>
@@ -79,7 +61,7 @@ bool MGraph<T>::adjacent(int x, int y)
 {
 	return edge[x][y]>0;
 }
-
+/*
 template <typename T>
 edges MGraph<T>::neighbors(int x)
 {
@@ -110,7 +92,7 @@ edges MGraph<T>::neighbors(int x)
 	}
 	return result;
 }
-
+*/
 
 template <typename T>
 int MGraph<T>::insertVertex(T x)
@@ -147,7 +129,7 @@ template<typename T>
 int MGraph<T>::firstneighbor(int x)
 {
 	for (int i = 0; i < vexnum; i++) {
-		if (edge[x][i] > 0) return i;
+		if (x!= i && edge[x][i] > 0) return i;
 	}
 	return -1;
 }
@@ -156,7 +138,7 @@ template<typename T>
 int MGraph<T>::firstInneighbor(int x)
 {
 	for (int i = 0; i < vexnum; i++) {
-		if (edge[i][x] > 0) return i;
+		if (x != i && edge[i][x] > 0) return i;
 	}
 	return -1;
 }
@@ -166,7 +148,7 @@ template<typename T>
 int MGraph<T>::nextneighbor(int x, int y)//x是弧尾，y是弧头，求下一条x邻接到的结点
 {
 	for (int i = y + 1; i < vexnum; i++) {
-		if (edge[x][i] > 0) {
+		if (x != i && edge[x][i] > 0) {
 			return i;
 		}
 	}
@@ -177,7 +159,7 @@ template<typename T>
 int MGraph<T>::nextInneighbor(int x, int y)
 {
 	for (int i = y + 1; i < vexnum; i++) {
-		if (edge[i][x] > 0) return i;
+		if (x != i && edge[i][x] > 0) return i;
 	}
 	return -1;
 }
@@ -197,6 +179,32 @@ void MGraph<T>::setEdgeValue(int x, int y, int info)
 	}
 	else if(kind == DG||kind == DN) {
 		edge[x][y] = info;
+	}
+}
+
+template<typename T>
+void MGraph<T>::BFSTraverse(void(*visit)(T c), int start)
+{
+	bool visited[MaxVertexNum];
+	int i, j;
+	for (i = 0; i < vexnum; i++) visited[i] = false;
+	for (i = start, j = 0; j < vexnum; i = (i + 1) % vexnum, j++) {
+		if (!visited[i]) {
+			BFS(i, visited, visit);
+		}
+	}
+}
+
+template<typename T>
+void MGraph<T>::DFSTraverse(void(*visit)(T c), int start)
+{
+	bool visited[MaxVertexNum];
+	int i, j;
+	for (i = 0; i < vexnum; i++) visited[i] = false;
+	for (i = start, j = 0; j < vexnum; i = (i + 1) % vexnum, j++) {
+		if (!visited[i]) {
+			DFS(i, visited, visit);
+		}
 	}
 }
 
@@ -253,26 +261,29 @@ int main() {
 	return 0;
 }
 
-*//*
+*/
+void print(char c) {
+	cout << c << " ";
+}
 int main() {
-	MGraph<char> graph(DG);
+	MGraph<char> graph(UDG);
 	map<char, int> mp;
 	int vexnum, arcnum, idx;
 	char c, x, y;
-	cout << "请输入顶点数和边数" << endl;
-	cin >> vexnum >> arcnum;
-	cout << "请依次输入每个结点对应的字符：" << endl;
-	for (int i = 0; i < vexnum; i++) {
+	graph.initialize(mp);
+	for (int i = 0; i < 4; i++) {
+		cout << "输入BFS的起点字符" << endl;
 		cin >> c;
-		idx = graph.insertVertex(c);
-		mp[c] = idx;
+		graph.BFSTraverse(print, mp[c]);
+		cout << endl;
 	}
-	cout << "请输入弧尾的字符和弧头的字符" << endl;
-	for (int i = 0; i < arcnum; i++) {
-		cin >> x >> y;
-		graph.addEdge(mp[x], mp[y]);
+	for (int i = 0; i < 4; i++) {
+		cout << "输入DFS的起点字符" << endl;
+		cin >> c;
+		graph.DFSTraverse(print, mp[c]);
+		cout << endl;
 	}
-
+	/*
 	for (int j = 0; j < 3; j++) {
 		cout << "请输入需要判断两个顶点间是否有弧的弧尾字符和弧头字符" << endl;
 		cin >> x >> y;
@@ -327,7 +338,7 @@ int main() {
 		else cout << y << "之后" << x << "没有邻接到的顶点" << endl;
 		cout << endl;
 	}
+	*/
 	return 0;
 }
 
-*/

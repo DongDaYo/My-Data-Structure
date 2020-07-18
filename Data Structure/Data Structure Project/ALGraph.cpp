@@ -4,14 +4,14 @@ template<typename T>
 void ALGraph<T>::initialize(map<T,int>& mp) {
 	T c, x, y;
 	int vn, an;
-	cout << "请输入顶点数和弧数" << endl;
+	cout << "请输入顶点数和边/弧数" << endl;
 	cin >> vn >> an;
 	cout << "请输入每个顶点的字符数据" << endl;
 	for (int i = 0; i < vn; i++) {
 		cin >> c;
 		mp[c] = insertVertex(c);
 	}
-	cout << "请输入弧的弧尾字符和弧头字符" << endl;
+	cout << "请输入边的两端（或弧的弧尾字符和弧头字符）" << endl;
 	for (int i = 0; i < an; i++) {
 		cin >> x >> y;
 		addEdge(mp[x], mp[y]);

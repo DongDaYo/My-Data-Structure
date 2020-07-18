@@ -1,4 +1,26 @@
 #include "OLGraph.h"
+#include "LinkQueue.cpp"
+
+static LinkQueue<int> queue;
+
+template<typename T>
+void OLGraph<T>::BFS(int i, bool* visited, void(*visit)(T c))
+{
+	int v = i;
+	visit(getVexElem(i));
+	visited[i] = true;
+	queue.enqueue(i);
+	while (!queue.isEmpty()) {
+		queue.dequeue(v);
+		for (int w = firstneighbor(v); w >= 0; w = nextneighbor(v, w)) {
+			if (!visited[w]) {
+				visit(getVexElem(w));
+				visited[w] = true;
+				queue.enqueue(w);
+			}
+		}
+	}
+}
 
 template<typename T>
 void OLGraph<T>::initialize(map<T,int>& mp) {
@@ -141,13 +163,32 @@ bool OLGraph<T>::setEdgeValue(int x, int y, int info)
 		return false;
 	}
 }
+
+template<typename T>
+void OLGraph<T>::BFSTraverse(void(*visit)(T c), int start)
+{
+	bool visited[MaxVertexNum];
+	int i, j;
+	for (i = 0; i < vexnum; i++) visited[i] = false;
+	for (i = start, j = 0; j < vexnum; i = (i + 1) % vexnum, j++) {
+		if (!visited[i]) {
+			BFS(i, visited, visit);
+		}
+	}
+}
+
 /*
+void print(char c) {
+	cout << c << " ";
+}
+
 int main() {
 	OLGraph<char> graph;
 	map<char, int> mp;
 	char x, y;
 	int s;
 	graph.initialize(mp);
+	
 	cout << "请输入需要判断是否有弧的两个结点，先输入弧尾" << endl;
 	for (int i = 0; i < 8; i++) {
 		cin >> x >> y;
@@ -186,6 +227,13 @@ int main() {
 			}
 		}
 	}
+
+	for (s = 0; s < 3; s++) {
+		cout << "请输入BFS的起点" << endl;
+		cin >> x;
+		graph.BFSTraverse(print, mp[x]);
+	}
+
 	return 0;
 }
 */

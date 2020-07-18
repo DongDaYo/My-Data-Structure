@@ -1,7 +1,9 @@
 #pragma once
 #include<limits.h>
 #include <string.h>
+#include <map>
 #define MaxVertexNum 12
+using namespace std;
 typedef enum {DG,DN,UDG,UDN} GraphKind;
 struct edges {
 	int pt[MaxVertexNum];//指向数组的指针，用于存放一系列结点的编号，
@@ -19,12 +21,8 @@ private:
 	int vexnum, arcnum;
 	GraphKind kind;
 
-	int foundIndex(T x) {
-		for (int i = 0; i < vexnum; i++) {
-			if (vertices[i] == x) return i;
-		}
-		return -1;
-	}
+	void BFS(int i, bool* visited, void(*visit)(T c));
+	void DFS(int i, bool* visited, void(*visit)(T c));
 public:
 
 	MGraph<T>(GraphKind k = DG) {
@@ -42,7 +40,7 @@ public:
 		return vertices[x];
 	}
 
-	void initialize(); 
+	void initialize(map<T, int>& mp);
 	bool adjacent(int x, int y);
 	edges neighbors(int x);//返回一个edges结构里，pt是与x相关联的顶点的数组，num为数组元素的个数
 	                       //对于无向图，pt存放所有与x相关联的顶点的数组，num为与x相关联的顶点的个数，inpt为空，inum为0
@@ -59,5 +57,7 @@ public:
 	int getEdgeValue(int x, int y);
 	void setEdgeValue(int x, int y, int info);
 
+	void BFSTraverse(void(*visit)(T c), int start = 0);
+	void DFSTraverse(void(*visit)(T c), int start = 0);
 };
 
