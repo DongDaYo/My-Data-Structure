@@ -1,11 +1,7 @@
 
 #pragma once
 #include<iostream> //为了使用NULL而引入
-template <class T>
-struct LinkNode {
-	T data;
-	struct LinkNode* next;
-};
+#include "common.h"
 
 template <class T>
 class LinkStack

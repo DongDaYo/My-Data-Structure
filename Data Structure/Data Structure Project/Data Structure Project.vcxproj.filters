@@ -57,6 +57,21 @@
     <ClCompile Include="AMLGraph.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Exervise - Topological Order.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Exercise - Prim algorithm MST.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Exercise - Kruskal algorithm MST.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Exercise - Dijkstra algorithm Shortest Path.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Exercise - Floyd algorithm shortest path.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LinkStack.h">
@@ -84,6 +99,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="AMLGraph.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="common.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

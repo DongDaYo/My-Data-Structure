@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -143,10 +143,15 @@
     <ClCompile Include="AVLTree.cpp" />
     <ClCompile Include="BiTree.cpp" />
     <ClCompile Include="Exercise - Bracket Matching.cpp" />
+    <ClCompile Include="Exercise - Dijkstra algorithm Shortest Path.cpp" />
+    <ClCompile Include="Exercise - Floyd algorithm shortest path.cpp" />
     <ClCompile Include="Exercise - Inorder Traverse BiTree with Stack.cpp" />
+    <ClCompile Include="Exercise - Kruskal algorithm MST.cpp" />
+    <ClCompile Include="Exercise - Prim algorithm MST.cpp" />
     <ClCompile Include="Exercise - Reverse Polish Notation.cpp" />
     <ClCompile Include="Exercise - Traverse BiTree by Layer with Queue.cpp" />
     <ClCompile Include="Exercise - Value of Expression.cpp" />
+    <ClCompile Include="Exervise - Topological Order.cpp" />
     <ClCompile Include="LinkQueue.cpp" />
     <ClCompile Include="LinkStack.cpp" />
     <ClCompile Include="MGraph.cpp" />
@@ -158,6 +163,7 @@
     <ClInclude Include="AMLGraph.h" />
     <ClInclude Include="AVLTree.h" />
     <ClInclude Include="BiTree.h" />
+    <ClInclude Include="common.h" />
     <ClInclude Include="LinkQueue.h" />
     <ClInclude Include="LinkStack.h" />
     <ClInclude Include="MGraph.h" />

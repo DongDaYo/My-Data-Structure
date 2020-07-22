@@ -1,9 +1,43 @@
 #include "ALGraph.h"
+#include"LinkQueue.h"
+
+static LinkQueue<int> queue;
+
+template<typename T>
+void ALGraph<T>::BFS(int i, bool* visited, void(*visit)(T c))
+{
+	int v = i;
+	visit(getVexElem(i));
+	visited[i] = true;
+	queue.enqueue(i);
+	while (!queue.isEmpty()) {
+		queue.dequeue(v);
+		for (int w = firstneighbor(v); w >= 0; w = nextneighbor(v, w)) {
+			if (!visited[w]) {
+				visited(getVexElem(w));
+				visited[w] = true;
+				queue.enqueue(w);
+			}
+		}
+	}
+}
+
+template<typename T>
+void ALGraph<T>::DFS(int i, bool* visited, void(*visit)(T c))
+{
+	visit(getVexElem(i));
+	visited[i] = true;
+	for (int w = firstneighbor(i); w >= 0; w = nextneighbor(i, w)) {
+		if (!visited[w]) {
+			DFS(w, visited, visit);
+		}
+	}
+}
 
 template<typename T>
 void ALGraph<T>::initialize(map<T,int>& mp) {
 	T c, x, y;
-	int vn, an;
+	int vn, an,info = 1;
 	cout << "请输入顶点数和边/弧数" << endl;
 	cin >> vn >> an;
 	cout << "请输入每个顶点的字符数据" << endl;
@@ -11,10 +45,11 @@ void ALGraph<T>::initialize(map<T,int>& mp) {
 		cin >> c;
 		mp[c] = insertVertex(c);
 	}
-	cout << "请输入边的两端（或弧的弧尾字符和弧头字符）" << endl;
+	cout << "请输入边的两端（或弧的弧尾字符和弧头字符）,有权值的还需输入权值" << endl;
 	for (int i = 0; i < an; i++) {
 		cin >> x >> y;
-		addEdge(mp[x], mp[y]);
+		if (kind == UDN || kind == DN) cin >> info;
+		addEdge(mp[x], mp[y], info);
 	}
 }
 
@@ -172,6 +207,32 @@ bool ALGraph<T>::setEdgeValue(int x, int y, int info)
 		return true;
 	}
 	else return false;
+}
+
+template<typename T>
+void ALGraph<T>::BFSTraverse(void(*visit)(T c), int start)
+{
+	bool visited[MaxVertexNum];
+	int i, j;
+	for (i = 0; i < vexnum; i++) visited[i] = false;
+	for (i = start, j = 0; j < vexnum; i = (i + 1) % vexnum, j++) {
+		if (!visited[i]) {
+			BFS(i, visited, visit);
+		}
+	}
+}
+
+template<typename T>
+void ALGraph<T>::DFSTraverse(void(*visit)(T c), int start)
+{
+	bool visited[MaxVertexNum];
+	int i, j;
+	for (i = 0; i < vexnum; i++) visited[i] = false;
+	for (i = start, j = 0; j < vexnum; i = (i + 1) % vexnum, j++) {
+		if (!visited[i]) {
+			DFS(i, visited, visit);
+		}
+	}
 }
 
 /*

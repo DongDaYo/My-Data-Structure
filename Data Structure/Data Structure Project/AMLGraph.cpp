@@ -26,18 +26,19 @@ void AMLGraph<T>::BFS(int i, bool* visited, void(*visit)(T c))
 template <typename T>
 void AMLGraph<T>::initialize(map<T, int>& mp) {
 	T c, x, y;
-	int vn, an;
+	int vn, an, info = 1;
 	cout << "请输入顶点数和边数" << endl;
 	cin >> vn >> an;
-	cout << "请输入每个顶点的字符数据" << endl;
+	cout << "请输入每个顶点的编号" << endl;
 	for (int i = 0; i < vn; i++) {
 		cin >> c;
 		mp[c] = insertVertex(c);
 	}
-	cout << "请输入每边两端的字符" << endl;
+	cout << "请输入每边两端的字符，如果有权值还需输入权值" << endl;
 	for (int i = 0; i < an; i++) {
 		cin >> x >> y;
-		addEdge(mp[x], mp[y]);
+		if (kind == UDN) cin >> info;
+		addEdge(mp[x], mp[y], info);
 	}
 }
 

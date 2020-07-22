@@ -3,6 +3,7 @@
 #include<iostream>
 #include<map>
 using namespace std;
+typedef enum {UDG,UDN} Graphkind;
 typedef struct ArcNode {
 	int ivex, jvex;
 	struct ArcNode* ilink = NULL, * jlink = NULL;
@@ -20,11 +21,12 @@ class AMLGraph
 private:
 	VNode<T> vertices[MaxVertexNum];
 	int vexnum, arcnum;
-
+	Graphkind kind;
 	void BFS(int i, bool* visited, void(*visit)(T c));
 public:
-	AMLGraph<T>() {
+	AMLGraph<T>(Graphkind k = UDG) {
 		vexnum = arcnum = 0;
+		kind = k;
 	}
 
 	~AMLGraph<T>() {

@@ -3,6 +3,7 @@
 #include<iostream>
 #include<map>
 using namespace std;
+typedef enum {DG, DN} Graphkind;
 typedef struct ArcNode {
 	int tailvex, headvex;
 	struct ArcNode* hlink=NULL, * tlink=NULL;
@@ -19,11 +20,12 @@ class OLGraph
 private:
 	VNode<T> vertices[MaxVertexNum];
 	int vexnum, arcnum;
-
+	Graphkind kind;
 	void BFS(int i, bool* visited, void(*visit)(T c));
 public:
-	OLGraph<T>() {
+	OLGraph<T>(Graphkind k = DG) {
 		vexnum = arcnum = 0;
+		kind = k;
 	}
 
 	~OLGraph<T>() {

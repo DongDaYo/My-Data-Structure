@@ -25,7 +25,7 @@ void OLGraph<T>::BFS(int i, bool* visited, void(*visit)(T c))
 template<typename T>
 void OLGraph<T>::initialize(map<T,int>& mp) {
 	T c, x, y;
-	int vn, an;
+	int vn, an, info = 1;
 	cout << "请输入顶点数和弧数" << endl;
 	cin >> vn >> an;
 	cout << "请输入每个顶点的字符数据" << endl;
@@ -33,10 +33,11 @@ void OLGraph<T>::initialize(map<T,int>& mp) {
 		cin >> c;
 		mp[c] = insertVertex(c);
 	}
-	cout << "请输入弧的弧尾字符和弧头字符" << endl;
+	cout << "请输入弧的弧尾字符和弧头字符,有权值的还需输入权值" << endl;
 	for (int i = 0; i < an; i++) {
 		cin >> x >> y;
-		addEdge(mp[x], mp[y]);
+		if (kind == DN) cin >> info;
+		addEdge(mp[x], mp[y], info);
 	}
 }
 

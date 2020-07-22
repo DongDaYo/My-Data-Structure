@@ -2,15 +2,9 @@
 #include<limits.h>
 #include <string.h>
 #include <map>
-#define MaxVertexNum 12
+#define MaxVertexNum 15
 using namespace std;
 typedef enum {DG,DN,UDG,UDN} GraphKind;
-struct edges {
-	int pt[MaxVertexNum];//指向数组的指针，用于存放一系列结点的编号，
-	int inpt[MaxVertexNum];//对于有向图，存放入弧弧尾的数组的指针
-	int num;//结点的个数
-	int inum;//inpt的个数；
-};
 
 template <typename T>
 class MGraph
@@ -42,10 +36,6 @@ public:
 
 	void initialize(map<T, int>& mp);
 	bool adjacent(int x, int y);
-	edges neighbors(int x);//返回一个edges结构里，pt是与x相关联的顶点的数组，num为数组元素的个数
-	                       //对于无向图，pt存放所有与x相关联的顶点的数组，num为与x相关联的顶点的个数，inpt为空，inum为0
-	                       //对于有向图，pt存放所有x邻接到的顶点（出弧弧头）的数组，num为x的出弧条数；
-	                       //            inpt存放所有邻接自x的顶点（入弧弧尾）的数组，inum为x的入弧的条数；
 	int insertVertex(T x);//插入一个新的顶点，返回其在结点数组的下标
 	void addEdge(int x, int y,int info = 1);//增加一条边或弧，为弧时x是弧尾，y是弧头
 	void removeEdge(int x, int y);
@@ -59,5 +49,6 @@ public:
 
 	void BFSTraverse(void(*visit)(T c), int start = 0);
 	void DFSTraverse(void(*visit)(T c), int start = 0);
+	int* indegrees();
 };
 

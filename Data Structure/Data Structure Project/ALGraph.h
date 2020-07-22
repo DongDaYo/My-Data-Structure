@@ -24,12 +24,8 @@ private:
 	int vexnum, arcnum;
 	GraphKind kind;
 
-	int foundIndex(T data) {
-		for (int i = 0; i < vexnum; i++) {
-			if (vertices[i].data == data) return i;
-		}
-		return -1;
-	}
+	void BFS(int i, bool* visited, void(*visit)(T c));
+	void DFS(int i, bool* visited, void(*visit)(T c));
 public:
 	ALGraph<T>(GraphKind k = DG) {
 		kind = k;
@@ -67,5 +63,7 @@ public:
 	int getEdgeValue(int x, int y);
 	bool setEdgeValue(int x, int y, int info);
 
+	void BFSTraverse(void(*visit)(T c), int start = 0);
+	void DFSTraverse(void(*visit)(T c), int start = 0);
 };
 

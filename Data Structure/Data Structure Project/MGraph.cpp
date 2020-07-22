@@ -28,6 +28,7 @@ void MGraph<T>::BFS(int i, bool* visited, void(*visit)(T c))
 template<typename T>
 void MGraph<T>::DFS(int i, bool* visited, void(*visit)(T c))
 {
+
 	visit(getVexElem(i));
 	visited[i] = true;
 	for (int w = firstneighbor(i); w >= 0; w = nextneighbor(i, w)) {
@@ -40,18 +41,19 @@ void MGraph<T>::DFS(int i, bool* visited, void(*visit)(T c))
 template<typename T>
 void MGraph<T>::initialize(map<T, int>& mp){
 	T c, x, y;
-	int vn, an;
+	int vn, an ,info=1;
 	cout << "请输入顶点数和边(弧)数" << endl;
 	cin >> vn >> an;
-	cout << "请输入每个顶点的字符数据" << endl;
+	cout << "请输入每个顶点的编号数据" << endl;
 	for (int i = 0; i < vn; i++) {
 		cin >> c;
 		mp[c] = insertVertex(c);
 	}
-	cout << "请输入每边两端的字符（或弧的弧头字符和弧尾字符）" << endl;
+	cout << "请输入每边两端的编号（或弧的弧头编号和弧尾编号）,有权值的还需输入权值" << endl;
 	for (int i = 0; i < an; i++) {
 		cin >> x >> y;
-		addEdge(mp[x], mp[y]);
+		if (kind == UDN || kind == DN) cin >> info;
+		addEdge(mp[x], mp[y], info);
 	}
 
 }
@@ -61,38 +63,6 @@ bool MGraph<T>::adjacent(int x, int y)
 {
 	return edge[x][y]>0;
 }
-/*
-template <typename T>
-edges MGraph<T>::neighbors(int x)
-{
-	edges result;
-	if (kind == DG || kind == DN) {
-		int num = 0;
-		for (int i = 0; i < vexnum; i++) {
-			if (edge[x][i] > 0) {
-				result.pt[num++] = i;
-			}
-		}
-		int inum = 0;
-		for (int i = 0; i < vexnum; i++) {
-			if (edge[i][x] > 0) {
-				result.inpt[inum++] = i;
-			}
-		}
-		result.num = num; result.inum = inum;
-	}
-	else if (kind == UDG || kind == UDN) {
-		int num = 0;
-		for (int i = 0; i < vexnum; i++) {
-			if (edge[x][i] > 0) {
-				result.pt[num++] = i;
-			}
-		}
-		result.num = num; result.inum = 0;
-	}
-	return result;
-}
-*/
 
 template <typename T>
 int MGraph<T>::insertVertex(T x)
@@ -167,7 +137,7 @@ int MGraph<T>::nextInneighbor(int x, int y)
 template<typename T>
 int MGraph<T>::getEdgeValue(int x, int y)
 {
-	return edges[x][y];
+	return edge[x][y];
 }
 
 template<typename T>
@@ -206,6 +176,19 @@ void MGraph<T>::DFSTraverse(void(*visit)(T c), int start)
 			DFS(i, visited, visit);
 		}
 	}
+}
+
+template<typename T>
+int* MGraph<T>::indegrees()
+{
+	static int r[MaxVertexNum];
+	for (int i = 0; i < vexnum; i++) {
+		r[i] = 0;
+		for (int j = 0; j < vexnum; j++) {
+			if (edge[j][i] > 0) r[i]++;
+		}
+	}
+	return r;
 }
 
 /*
@@ -262,22 +245,23 @@ int main() {
 }
 
 */
+/*
 void print(char c) {
 	cout << c << " ";
 }
 int main() {
-	MGraph<char> graph(UDG);
+	MGraph<char> graph(DG);
 	map<char, int> mp;
 	int vexnum, arcnum, idx;
 	char c, x, y;
 	graph.initialize(mp);
-	for (int i = 0; i < 4; i++) {
+	for (int i = 0; i < 0; i++) {
 		cout << "输入BFS的起点字符" << endl;
 		cin >> c;
 		graph.BFSTraverse(print, mp[c]);
 		cout << endl;
 	}
-	for (int i = 0; i < 4; i++) {
+	for (int i = 0; i < 2; i++) {
 		cout << "输入DFS的起点字符" << endl;
 		cin >> c;
 		graph.DFSTraverse(print, mp[c]);
@@ -338,7 +322,9 @@ int main() {
 		else cout << y << "之后" << x << "没有邻接到的顶点" << endl;
 		cout << endl;
 	}
-	*/
+	
 	return 0;
 }
+*/
+
 
