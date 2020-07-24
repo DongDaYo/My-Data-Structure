@@ -1,6 +1,6 @@
+/*
 #include "MGraph.cpp"
 
-/*
 static MGraph<char> graph(DN);
 static int A[MaxVertexNum][MaxVertexNum];
 static int path[MaxVertexNum][MaxVertexNum];

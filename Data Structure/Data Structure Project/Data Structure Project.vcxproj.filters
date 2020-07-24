@@ -72,6 +72,9 @@
     <ClCompile Include="Exercise - Floyd algorithm shortest path.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Exercise - Critical Path.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LinkStack.h">

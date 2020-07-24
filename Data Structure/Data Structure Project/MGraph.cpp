@@ -1,8 +1,9 @@
 #include "MGraph.h"
-#include "LinkQueue.cpp"
+//#include "LinkQueue.cpp"
 #include <iostream>
 using namespace std;
 
+/*
 static LinkQueue<int> queue;
 
 template<typename T>
@@ -24,6 +25,20 @@ void MGraph<T>::BFS(int i, bool* visited, void(*visit)(T c))
 	}
 	
 }
+
+template<typename T>
+void MGraph<T>::BFSTraverse(void(*visit)(T c), int start)
+{
+	bool visited[MaxVertexNum];
+	int i, j;
+	for (i = 0; i < vexnum; i++) visited[i] = false;
+	for (i = start, j = 0; j < vexnum; i = (i + 1) % vexnum, j++) {
+		if (!visited[i]) {
+			BFS(i, visited, visit);
+		}
+	}
+}
+*/
 
 template<typename T>
 void MGraph<T>::DFS(int i, bool* visited, void(*visit)(T c))
@@ -152,18 +167,7 @@ void MGraph<T>::setEdgeValue(int x, int y, int info)
 	}
 }
 
-template<typename T>
-void MGraph<T>::BFSTraverse(void(*visit)(T c), int start)
-{
-	bool visited[MaxVertexNum];
-	int i, j;
-	for (i = 0; i < vexnum; i++) visited[i] = false;
-	for (i = start, j = 0; j < vexnum; i = (i + 1) % vexnum, j++) {
-		if (!visited[i]) {
-			BFS(i, visited, visit);
-		}
-	}
-}
+
 
 template<typename T>
 void MGraph<T>::DFSTraverse(void(*visit)(T c), int start)
@@ -186,6 +190,19 @@ int* MGraph<T>::indegrees()
 		r[i] = 0;
 		for (int j = 0; j < vexnum; j++) {
 			if (edge[j][i] > 0) r[i]++;
+		}
+	}
+	return r;
+}
+
+template<typename T>
+int* MGraph<T>::outdegrees()
+{
+	static int r[MaxVertexNum];
+	for (int i = 0; i < vexnum; i++) {
+		r[i] = 0;
+		for (int j = 0; j < vexnum; j++) {
+			if (edge[i][j] > 0) r[i]++;
 		}
 	}
 	return r;

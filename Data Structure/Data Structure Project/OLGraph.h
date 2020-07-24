@@ -21,7 +21,7 @@ private:
 	VNode<T> vertices[MaxVertexNum];
 	int vexnum, arcnum;
 	Graphkind kind;
-	void BFS(int i, bool* visited, void(*visit)(T c));
+	//void BFS(int i, bool* visited, void(*visit)(T c));
 public:
 	OLGraph<T>(Graphkind k = DG) {
 		vexnum = arcnum = 0;
@@ -47,6 +47,10 @@ public:
 		return vexnum;
 	}
 
+	int getArcnum() {
+		return arcnum;
+	}
+
 	T getVexElem(int x) {
 		return vertices[x].data;
 	}
@@ -64,6 +68,6 @@ public:
 	int getEdgeValue(int x, int y);
 	bool setEdgeValue(int x, int y, int info);
 
-	void BFSTraverse(void(*visit)(T c), int start = 0);
+	//void BFSTraverse(void(*visit)(T c), int start = 0);
 };
 

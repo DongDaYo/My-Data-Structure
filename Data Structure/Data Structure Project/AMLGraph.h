@@ -75,6 +75,6 @@ public:
 	int getEdgeValue(int x, int y);
 	bool setEdgeValue(int x, int y, int info);
 
-	void BFSTraverse(void(*visit)(T c), int start = 0);
+	//void BFSTraverse(void(*visit)(T c), int start = 0);
 };
 

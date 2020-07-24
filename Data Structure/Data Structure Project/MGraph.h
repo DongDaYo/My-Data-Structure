@@ -15,7 +15,7 @@ private:
 	int vexnum, arcnum;
 	GraphKind kind;
 
-	void BFS(int i, bool* visited, void(*visit)(T c));
+	//void BFS(int i, bool* visited, void(*visit)(T c));
 	void DFS(int i, bool* visited, void(*visit)(T c));
 public:
 
@@ -47,8 +47,9 @@ public:
 	int getEdgeValue(int x, int y);
 	void setEdgeValue(int x, int y, int info);
 
-	void BFSTraverse(void(*visit)(T c), int start = 0);
+	//void BFSTraverse(void(*visit)(T c), int start = 0);
 	void DFSTraverse(void(*visit)(T c), int start = 0);
 	int* indegrees();
+	int* outdegrees();
 };
 

@@ -1,6 +1,7 @@
 #include "AMLGraph.h"
-#include "LinkQueue.cpp"
 
+/*
+#include "LinkQueue.cpp"
 
 static LinkQueue<int> queue;
 
@@ -22,6 +23,22 @@ void AMLGraph<T>::BFS(int i, bool* visited, void(*visit)(T c))
 		}
 	}
 }
+
+template<typename T>
+void AMLGraph<T>::BFSTraverse(void(*visit)(T c), int start)
+{
+	bool visited[MaxVertexNum];
+	int i, j;
+	for (i = 0; i < vexnum; i++) {
+		visited[i] = false;
+	}
+	for (i = start, j = 0; j < vexnum; i = (i+1)%vexnum, j++) {
+		if (!visited[i]) {
+			BFS(i, visited, visit);
+		}
+	}
+}
+*/
 
 template <typename T>
 void AMLGraph<T>::initialize(map<T, int>& mp) {
@@ -225,21 +242,7 @@ bool AMLGraph<T>::setEdgeValue(int x, int y, int info)
 
 
 
-template<typename T>
-void AMLGraph<T>::BFSTraverse(void(*visit)(T c), int start)
-{
-	bool visited[MaxVertexNum];
-	int i, j;
-	for (i = 0; i < vexnum; i++) {
-		visited[i] = false;
-	}
-	for (i = start, j = 0; j < vexnum; i = (i+1)%vexnum, j++) {
-		if (!visited[i]) {
-			BFS(i, visited, visit);
-		}
-	}
 
-}
 
 /*
 void print(char c) {

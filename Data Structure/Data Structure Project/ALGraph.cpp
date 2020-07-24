@@ -1,4 +1,6 @@
 #include "ALGraph.h"
+
+/*
 #include"LinkQueue.h"
 
 static LinkQueue<int> queue;
@@ -21,6 +23,20 @@ void ALGraph<T>::BFS(int i, bool* visited, void(*visit)(T c))
 		}
 	}
 }
+
+template<typename T>
+void ALGraph<T>::BFSTraverse(void(*visit)(T c), int start)
+{
+	bool visited[MaxVertexNum];
+	int i, j;
+	for (i = 0; i < vexnum; i++) visited[i] = false;
+	for (i = start, j = 0; j < vexnum; i = (i + 1) % vexnum, j++) {
+		if (!visited[i]) {
+			BFS(i, visited, visit);
+		}
+	}
+}
+*/
 
 template<typename T>
 void ALGraph<T>::DFS(int i, bool* visited, void(*visit)(T c))
@@ -209,18 +225,7 @@ bool ALGraph<T>::setEdgeValue(int x, int y, int info)
 	else return false;
 }
 
-template<typename T>
-void ALGraph<T>::BFSTraverse(void(*visit)(T c), int start)
-{
-	bool visited[MaxVertexNum];
-	int i, j;
-	for (i = 0; i < vexnum; i++) visited[i] = false;
-	for (i = start, j = 0; j < vexnum; i = (i + 1) % vexnum, j++) {
-		if (!visited[i]) {
-			BFS(i, visited, visit);
-		}
-	}
-}
+
 
 template<typename T>
 void ALGraph<T>::DFSTraverse(void(*visit)(T c), int start)

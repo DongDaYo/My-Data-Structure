@@ -1,3 +1,4 @@
+/*
 #include "AMLGraph.cpp";
 #include <algorithm>
 #define MaxEdgeNum 30
@@ -16,7 +17,6 @@ bool cmp(Edge a, Edge b) {
 	return a.weight < b.weight;
 }
 
-/*
 int main() {
 	AMLGraph<char> graph(UDN);
 	map<char, int> mp;

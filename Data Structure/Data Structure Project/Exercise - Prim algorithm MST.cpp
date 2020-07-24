@@ -1,7 +1,7 @@
+/*
 #include "MGraph.cpp"
 using namespace std;
 
-/*
 int main() {
 	MGraph<char> graph(UDN);
 	map<char, int> mp;

@@ -1,7 +1,8 @@
+/*
 #include "MGraph.cpp"
 #include "LinkStack.cpp"
 
-/*
+
 int main() {
 	MGraph<char> graph(UDN);
 	map<char, int> mp;

@@ -1,8 +1,9 @@
+/*
 #include "MGraph.cpp";
+#include "LinkQueue.cpp"
 #include "LinkStack.cpp"
 using namespace std;
 
-/*
 int main() {
 	MGraph<int> graph(DG);
 	map<int, int> mp;

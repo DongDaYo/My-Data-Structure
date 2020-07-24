@@ -1,4 +1,5 @@
 #include "OLGraph.h"
+/*
 #include "LinkQueue.cpp"
 
 static LinkQueue<int> queue;
@@ -21,6 +22,20 @@ void OLGraph<T>::BFS(int i, bool* visited, void(*visit)(T c))
 		}
 	}
 }
+
+template<typename T>
+void OLGraph<T>::BFSTraverse(void(*visit)(T c), int start)
+{
+	bool visited[MaxVertexNum];
+	int i, j;
+	for (i = 0; i < vexnum; i++) visited[i] = false;
+	for (i = start, j = 0; j < vexnum; i = (i + 1) % vexnum, j++) {
+		if (!visited[i]) {
+			BFS(i, visited, visit);
+		}
+	}
+}
+*/
 
 template<typename T>
 void OLGraph<T>::initialize(map<T,int>& mp) {
@@ -165,18 +180,6 @@ bool OLGraph<T>::setEdgeValue(int x, int y, int info)
 	}
 }
 
-template<typename T>
-void OLGraph<T>::BFSTraverse(void(*visit)(T c), int start)
-{
-	bool visited[MaxVertexNum];
-	int i, j;
-	for (i = 0; i < vexnum; i++) visited[i] = false;
-	for (i = start, j = 0; j < vexnum; i = (i + 1) % vexnum, j++) {
-		if (!visited[i]) {
-			BFS(i, visited, visit);
-		}
-	}
-}
 
 /*
 void print(char c) {
