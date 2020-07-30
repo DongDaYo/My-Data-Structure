@@ -75,6 +75,9 @@
     <ClCompile Include="Exercise - Critical Path.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Exercise - DFSTraverse to find loop.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LinkStack.h">

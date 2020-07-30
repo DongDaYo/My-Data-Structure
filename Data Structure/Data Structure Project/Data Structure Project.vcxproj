@@ -144,6 +144,7 @@
     <ClCompile Include="BiTree.cpp" />
     <ClCompile Include="Exercise - Bracket Matching.cpp" />
     <ClCompile Include="Exercise - Critical Path.cpp" />
+    <ClCompile Include="Exercise - DFSTraverse to find loop.cpp" />
     <ClCompile Include="Exercise - Dijkstra algorithm Shortest Path.cpp" />
     <ClCompile Include="Exercise - Floyd algorithm shortest path.cpp" />
     <ClCompile Include="Exercise - Inorder Traverse BiTree with Stack.cpp" />
